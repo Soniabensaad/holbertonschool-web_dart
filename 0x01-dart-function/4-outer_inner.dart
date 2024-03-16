@@ -1,7 +1,9 @@
-String inner() {
-  return "Hello";
-}
-
 void outer(String name, String id) {
-  print("${inner()} Agent ${name.split(' ')[0].substring(0, 1)}. ${name.split(' ')[1]} your id is $id");
+  String inner() {
+    var split = name.split(" ");
+    var result = split[1].substring(0, 1) + "." + split[0];
+    return "Hello Agent ${result} your id is $id";
+  }
+
+  print(inner());
 }
