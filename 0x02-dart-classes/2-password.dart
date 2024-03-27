@@ -1,32 +1,21 @@
 class Password {
-  String _value;
-
-  Password(this._value) {
-    if (_value.length < 8 || _value.length > 16) {
-      throw ArgumentError('Password must be between 8 and 16 characters long.');
-    }
-  }
+  String password = '';
 
   bool isValid() {
-    bool hasUppercase = false;
-    bool hasLowercase = false;
-    bool hasNumber = false;
-
-    for (int i = 0; i < _value.length; i++) {
-      if (_value.codeUnitAt(i) >= 65 && _value.codeUnitAt(i) <= 90) {
-        hasUppercase = true;
-      } else if (_value.codeUnitAt(i) >= 97 && _value.codeUnitAt(i) <= 122) {
-        hasLowercase = true;
-      } else if (_value.codeUnitAt(i) >= 48 && _value.codeUnitAt(i) <= 57) {
-        hasNumber = true;
+    if (this.password.length >= 8 && this.password.length <= 16) {
+      if (this.password.contains(RegExp(r'[A-Z]')) &&
+          this.password.contains(RegExp(r'[a-z]'))) {
+        if (this.password.contains(RegExp(r'[0-9]'))) {
+          return true;
+        }
       }
     }
 
-    return hasUppercase && hasLowercase && hasNumber;
+    return false;
   }
 
   @override
   String toString() {
-    return 'Your Password is: $_value';
+    return 'Your Password is: ${this.password}';
   }
 }
